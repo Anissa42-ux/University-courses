@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Operation: Akram 21</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+  body {
+    margin: 0;
+    background-color: #0a0a0a;
+    color: #00ffae;
+    font-family: 'Share Tech Mono', monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+  }
+  .screen {
+    text-align: center;
+    max-width: 600px;
+  }
+  .hidden { display: none; }
+
+  #msg {
+    font-size: 1.2em;
+    line-height: 1.6em;
+    white-space: pre-wrap;
+  }
+
+  .glitch {
+    position: relative;
+    color: #00ffae;
+    font-size: 1.3em;
+  }
+
+  .glitch::before,
+  .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    width: 100%;
+    background: transparent;
+    overflow: hidden;
+    clip: rect(0, 900px, 0, 0);
+  }
+
+  .glitch::before {
+    animation: glitchTop 1s infinite linear alternate-reverse;
+    color: #ff006e;
+  }
+
+  .glitch::after {
+    animation: glitchBot 1s infinite linear alternate-reverse;
+    color: #3a86ff;
+  }
+
+  @keyframes glitchTop {
+    0% { clip: rect(0, 9999px, 0, 0); transform: translate(-2px, -2px); }
+    20% { clip: rect(5px, 9999px, 25px, 0); transform: translate(2px, -2px); }
+    40% { clip: rect(15px, 9999px, 60px, 0); transform: translate(-3px, 2px); }
+    60% { clip: rect(25px, 9999px, 85px, 0); transform: translate(3px, 1px); }
+    80% { clip: rect(40px, 9999px, 120px, 0); transform: translate(-1px, 0px); }
+    100% { clip: rect(50px, 9999px, 150px, 0); transform: translate(0, 0); }
+  }
+
+  @keyframes glitchBot {
+    0% { clip: rect(60px, 9999px, 80px, 0); transform: translate(2px, 0); }
+    20% { clip: rect(40px, 9999px, 60px, 0); transform: translate(-2px, 2px); }
+    40% { clip: rect(20px, 9999px, 40px, 0); transform: translate(2px, -1px); }
+    60% { clip: rect(10px, 9999px, 30px, 0); transform: translate(-1px, 1px); }
+    80% { clip: rect(0, 9999px, 20px, 0); transform: translate(1px, 0px); }
+    100% { clip: rect(5px, 9999px, 25px, 0); transform: translate(0, -1px); }
+  }
+
+  #cat {
+    width: 120px;
+    margin-top: 25px;
+    filter: drop-shadow(0 0 10px #00ffae);
+  }
+
+  .party {
+    color: #fff;
+    font-size: 1.3em;
+    animation: fadeIn 1s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .confetti {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .confetti span {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: hsl(var(--hue), 80%, 60%);
+    top: -10px;
+    border-radius: 50%;
+    animation: fall 3s linear infinite;
+  }
+
+  @keyframes fall {
+    to { transform: translateY(100vh) rotate(720deg); }
+  }
+</style>
+</head>
+<body>
+  <div class="screen" id="screen1">
+    <div id="msg" class="glitch" data-text="Decrypting message for: Akram_21...">Decrypting message for: Akram...</div>
+  </div>
+
+  <div class="screen hidden" id="screen2">
+    <div id="msg">
+      ERROR ❌: Emotional overflow detected.<br><br>
+      Attempting to stabilize system...<br><br>
+      😾 WARNING: User has made me mad... very mad.<br><br>
+      Rebooting feelings...
+    </div>
+  </div>
+
+  <div class="screen hidden" id="screen3">
+    <div class="party">
+      System reboot complete ✅<br><br>
+      🐱 Mission: <b>Celebrate Akram’s 21st Birthday</b><br><br>
+      You annoy me 50% of the time, but somehow you’re still one of the best people I know 😤🎂<br><br>
+      Happy 21, agent Akram.<br>
+      Stay chaotic, stay you 😎🐾
+      <br><br>
+      <img id="cat" src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" />
+    </div>
+  </div>
+
+  <audio id="music" src="https://cdn.pixabay.com/audio/2022/03/15/audio_07a2a8deeb.mp3"></audio>
+
+  <script>
+    const s1 = document.getElementById('screen1');
+    const s2 = document.getElementById('screen2');
+    const s3 = document.getElementById('screen3');
+    const music = document.getElementById('music');
+
+    setTimeout(() => {
+      s1.classList.add('hidden');
+      s2.classList.remove('hidden');
+    }, 2500);
+
+    setTimeout(() => {
+      s2.classList.add('hidden');
+      s3.classList.remove('hidden');
+      startConfetti();
+      music.play();
+      document.body.style.background = 'linear-gradient(135deg, #000000, #1a1a1a, #111)';
+    }, 6500);
+
+    function startConfetti() {
+      const confetti = document.createElement('div');
+      confetti.classList.add('confetti');
+      document.body.appendChild(confetti);
+
+      for (let i = 0; i < 150; i++) {
+        const span = document.createElement('span');
+        span.style.left = Math.random() * 100 + 'vw';
+        span.style.animationDelay = Math.random() * 3 + 's';
+        span.style.setProperty('--hue', Math.floor(Math.random() * 360));
+        confetti.appendChild(span);
+      }
+
+      setTimeout(() => confetti.remove(), 6000);
+    }
+  </script>
+</body>
+</html>
